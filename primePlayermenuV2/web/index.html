@@ -1,0 +1,49 @@
+<html>
+<head>
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <style>
+        .general {
+            opacity: 0; /* Unsichtbar zu Beginn */
+            position: absolute;
+            top: -100%; /* Start außerhalb des Bildschirms */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: top 1s ease-in-out, opacity 0.5s ease-in-out; /* Animation für Bewegung und Einblenden */
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        img {
+            width: auto;
+            height: auto;
+            min-width: 100%;
+            min-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="general">
+        <img src="https://cdn.discordapp.com/attachments/1150860533692641394/1295430166369140796/filter.jpeg?ex=670e9edb&is=670d4d5b&hm=16c80d22d472f833420315466f8d7345bb9a0bde96ac7535aea1ceee8a9c5655&">
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            /* open the UI for user */
+            window.addEventListener('message', function(event) {
+                if (event.data.type == "openGeneral"){
+                    $('.general').css('top', '0').css('opacity', '1'); // Bild fährt ein und wird sichtbar
+                } else if (event.data.type == "closeAll"){
+                    $('.general').css('top', '-100%').css('opacity', '0'); // Bild fährt aus und wird unsichtbar
+                } 
+            });
+        });
+    </script>
+</body>
+</html>
